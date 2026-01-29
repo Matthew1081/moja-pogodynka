@@ -1,23 +1,23 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { citiesData } from './mockData'; // Upewnij się, że plik mockData.js jest w folderze src/
+import { citiesData } from './mockData'; 
 
 const Dashboard = () => {
-  // Stan dla wyszukiwarki (Wymaganie 4.0)
+  
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Pobranie aktualnej jednostki z Redux (Wymaganie 3.5)
+  
   const unit = useSelector(state => state.weather.unit);
 
-  // Funkcja formatująca temperaturę (Wymaganie 3.0 - useMemo)
+  
   const formatTemp = useMemo(() => (tempC) => {
     if (unit === 'Fahrenheit') return (tempC * 9/5 + 32).toFixed(1) + ' °F';
     if (unit === 'Kelvin') return (tempC + 273.15).toFixed(1) + ' K';
     return tempC + ' °C';
   }, [unit]);
 
-  // Filtrowanie listy miast (Wymaganie 4.0)
+  
   const filteredCities = useMemo(() => {
     return citiesData.filter(city =>
       city.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -28,7 +28,7 @@ const Dashboard = () => {
     <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
       <h1>Prognoza Pogody</h1>
       
-      {/* Formularz wyszukiwania miejscowości (Wymaganie 4.0) */}
+     
       <div style={{ marginBottom: '20px' }}>
         <input
           type="text"
@@ -45,7 +45,7 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Lista miejscowości (Wymaganie 3.0) */}
+      
       <div style={{ display: 'grid', gap: '15px' }}>
         {filteredCities.map(city => (
           <div 
@@ -58,7 +58,7 @@ const Dashboard = () => {
               boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
             }}
           >
-            {/* Nawigacja do szczegółów (Wymaganie 3.5) */}
+            
             <Link to={`/city/${city.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>{city.name}</span>

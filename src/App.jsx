@@ -9,14 +9,14 @@ function App() {
   const dispatch = useDispatch();
 
   return (
-    // Dodajemy <div> jako kontener nadrzędny, aby naprawić błąd renderowania
+    
     <div className="App">
       <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc', marginBottom: '20px' }}>
         <Link to="/" style={{ marginRight: '20px', fontWeight: 'bold' }}>Strona Główna</Link>
         
         <div style={{ float: 'right' }}>
           <span>Jednostka: </span>
-          {/* Globalna zmiana jednostek temperatury - wymóg na 3.5 [cite: 39] */}
+          
           {['Celsius', 'Fahrenheit', 'Kelvin'].map((u) => (
             <button 
               key={u} 
@@ -34,11 +34,11 @@ function App() {
         <div style={{ clear: 'both' }}></div>
       </nav>
 
-      {/* Konfiguracja ścieżek nawigacji - wymóg na 3.5 [cite: 38] */}
+      
       <Routes>
-        {/* Widok główny z listą i wyszukiwarką - ocena 4.0  */}
+        
         <Route path="/" element={<Dashboard />} />
-        {/* Widok szczegółowy miejscowości - wymóg konieczny [cite: 9] */}
+        
         <Route path="/city/:id" element={<CityDetails />} />
       </Routes>
     </div>
